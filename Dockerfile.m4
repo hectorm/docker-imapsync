@@ -65,6 +65,9 @@ RUN tar -xzf /tmp/imapsync.tgz --strip-components=1
 RUN ./INSTALL.d/prerequisites_imapsync
 RUN PATH="${PATH}:${PWD}" pp -x -o ./imapsync.cgi ./imapsync
 RUN ./imapsync.cgi --version
+WORKDIR /tmp/imapsync/X/
+RUN ln -sf ./imapsync_form_extra.html ./index.html
+RUN unlink ./imapsync_current.txt && touch ./imapsync_current.txt
 
 ##################################################
 ## "main" stage
