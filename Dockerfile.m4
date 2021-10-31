@@ -95,8 +95,9 @@ RUN find /opt/imapsync/www/ -type d -not -perm 0755 -exec chmod 0755 '{}' ';'
 RUN find /opt/imapsync/www/ -type f -not -perm 0644 -exec chmod 0644 '{}' ';'
 
 # Copy h2o config
-COPY --chown=root:root ./config/h2o/h2o.conf /etc/h2o/
-RUN find /etc/h2o/h2o.conf -type d -not -perm 0644 -exec chmod 0644 '{}' ';'
+COPY --chown=root:root ./config/h2o/ /etc/h2o/
+RUN find /etc/h2o/ -type d -not -perm 0755 -exec chmod 0755 '{}' ';'
+RUN find /etc/h2o/ -type f -not -perm 0644 -exec chmod 0644 '{}' ';'
 
 # Create unprivileged user
 ENV IMAPSYNC_USER_UID=1000
