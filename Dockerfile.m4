@@ -107,7 +107,7 @@ RUN useradd -u "${IMAPSYNC_USER_UID:?}" -g 0 -s "$(command -v sh)" -Md / imapsyn
 USER imapsync:root
 
 # Run Imapsync tests
-RUN /opt/imapsync/cgi/imapsync.cgi --tests && rm -rf /tmp/par-*/
+RUN cd /tmp/ && /opt/imapsync/cgi/imapsync.cgi --tests && rm -rf ./par-*/ ./W/
 
 # Web server port
 EXPOSE 8080/tcp
