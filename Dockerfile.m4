@@ -51,7 +51,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 		liburi-perl \
 		libwww-perl \
 		make \
-		procps
+		procps \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Build Imapsync
 ARG IMAPSYNC_VERSION=2.178
