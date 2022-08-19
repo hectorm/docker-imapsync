@@ -82,10 +82,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		ca-certificates \
+		catatonit \
 		h2o \
 		perl \
 		procps \
-		tini \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Copy Imapsync build
@@ -113,5 +113,5 @@ RUN cd /tmp/ && /opt/imapsync/cgi/imapsync.cgi --tests && rm -rf ./par-*/ ./W/
 # Web server port
 EXPOSE 8080/tcp
 
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["h2o", "--mode", "worker", "--conf", "/etc/h2o/h2o.conf"]
