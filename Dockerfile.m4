@@ -35,6 +35,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 		libpackage-stash-xs-perl \
 		libpar-packer-perl \
 		libparse-recdescent-perl \
+		libproc-processtable-perl \
 		libreadonly-perl \
 		libregexp-common-perl \
 		libsys-meminfo-perl \
@@ -51,18 +52,23 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 		liburi-perl \
 		libwww-perl \
 		make \
+		patch \
 		procps \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Build Imapsync
-ARG IMAPSYNC_VERSION=2.200
+ARG IMAPSYNC_VERSION=2.229
 ARG IMAPSYNC_TARBALL_URL=https://imapsync.lamiral.info/dist/imapsync-${IMAPSYNC_VERSION}.tgz
-ARG IMAPSYNC_TARBALL_CHECKSUM=115f3e3be2ec5fd5235501240292c5f15bd289d47e39f7581da861b92bca5be5
+ARG IMAPSYNC_TARBALL_CHECKSUM=553ce6d6535b954987a859fa0c3c74da446df74157d398ab09159c7f8ed8043d
 RUN curl -Lo /tmp/imapsync.tgz "${IMAPSYNC_TARBALL_URL:?}"
 RUN printf '%s' "${IMAPSYNC_TARBALL_CHECKSUM:?}  /tmp/imapsync.tgz" | sha256sum -c
 RUN mkdir /tmp/imapsync/
 WORKDIR /tmp/imapsync/
 RUN tar -xzf /tmp/imapsync.tgz --strip-components=1
+COPY --chown=root:root ./patches/imapsync/ /tmp/patches/imapsync/
+RUN find /tmp/patches/imapsync/ -type d -not -perm 0755 -exec chmod 0755 '{}' ';'
+RUN find /tmp/patches/imapsync/ -type f -not -perm 0644 -exec chmod 0644 '{}' ';'
+RUN for f in /tmp/patches/imapsync/*.patch; do patch -p1 < "${f:?}"; done
 RUN ./INSTALL.d/prerequisites_imapsync
 RUN PATH="${PATH}:${PWD}" pp -x -o ./imapsync.cgi ./imapsync
 RUN ./imapsync.cgi --version
