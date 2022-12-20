@@ -1,0 +1,39 @@
+--- a/imapsync	1970-01-01 00:00:00.000000000 +0000
++++ b/imapsync	1970-01-01 00:00:00.000000000 +0000
+@@ -21816,6 +21816,6 @@
+ 		#tests_tcpping(  ) ;
+-		tests_sslcheck(  ) ;
+-		tests_not_long_imapsync_version_public(  ) ;
+-		tests_reconnect_if_needed(  ) ;
+-		tests_reconnect_12_if_needed(  ) ;
++		#tests_sslcheck(  ) ;
++		#tests_not_long_imapsync_version_public(  ) ;
++		#tests_reconnect_if_needed(  ) ;
++		#tests_reconnect_12_if_needed(  ) ;
+ 		tests_sleep_if_needed(  ) ;
+@@ -21886,4 +21886,4 @@
+                 tests_abort(  ) ;
+-                tests_probe_imapssl(  ) ;
+-                tests_mailimapclient_connect(  ) ;
++                #tests_probe_imapssl(  ) ;
++                #tests_mailimapclient_connect(  ) ;
+                 tests_checknoabletosearch(  ) ;
+@@ -21899,4 +21899,4 @@
+                 tests_remove_doublequotes_if_any(  ) ;
+-                tests_login_imap(  ) ;
+-                tests_login_imap_oauth(  ) ;
++                #tests_login_imap(  ) ;
++                #tests_login_imap_oauth(  ) ;
+                 tests_skipmess_neg(  ) ;
+@@ -21912,4 +21912,4 @@
+                 tests_debugcontent(  ) ;
+-                tests_compress_ssl(  ) ;
+-                tests_compress(  ) ;
++                #tests_compress_ssl(  ) ;
++                #tests_compress(  ) ;
+                 tests_get_options_extra(  ) ;
+@@ -21955,3 +21955,3 @@
+                 
+-                done_testing( 1992 ) ;
++                done_testing( 1884 ) ;
+                 note( 'Leaving  tests()' ) ;
