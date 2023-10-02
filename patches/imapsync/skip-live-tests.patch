@@ -1,6 +1,6 @@
 --- a/imapsync	1970-01-01 00:00:00.000000000 +0000
 +++ b/imapsync	1970-01-01 00:00:00.000000000 +0000
-@@ -21816,6 +21816,6 @@
+@@ -22407,6 +22407,6 @@
  		#tests_tcpping(  ) ;
 -		tests_sslcheck(  ) ;
 -		tests_not_long_imapsync_version_public(  ) ;
@@ -11,29 +11,36 @@
 +		#tests_reconnect_if_needed(  ) ;
 +		#tests_reconnect_12_if_needed(  ) ;
  		tests_sleep_if_needed(  ) ;
-@@ -21886,4 +21886,4 @@
+@@ -22477,4 +22477,4 @@
                  tests_abort(  ) ;
 -                tests_probe_imapssl(  ) ;
 -                tests_mailimapclient_connect(  ) ;
 +                #tests_probe_imapssl(  ) ;
 +                #tests_mailimapclient_connect(  ) ;
                  tests_checknoabletosearch(  ) ;
-@@ -21899,4 +21899,4 @@
+@@ -22490,6 +22490,6 @@
                  tests_remove_doublequotes_if_any(  ) ;
--                tests_login_imap(  ) ;
+-                tests_login_imap_ssl_993(  ) ;
+-                tests_login_imap_starttls(  ) ;
+-                tests_login_imap_notls_nossl(  ) ;
 -                tests_login_imap_oauth(  ) ;
-+                #tests_login_imap(  ) ;
++                #tests_login_imap_ssl_993(  ) ;
++                #tests_login_imap_starttls(  ) ;
++                #tests_login_imap_notls_nossl(  ) ;
 +                #tests_login_imap_oauth(  ) ;
                  tests_skipmess_neg(  ) ;
-@@ -21912,4 +21912,4 @@
+@@ -22505,5 +22505,5 @@
                  tests_debugcontent(  ) ;
 -                tests_compress_ssl(  ) ;
+-                tests_compress_starttls(  ) ;
 -                tests_compress(  ) ;
 +                #tests_compress_ssl(  ) ;
++                #tests_compress_starttls(  ) ;
 +                #tests_compress(  ) ;
                  tests_get_options_extra(  ) ;
-@@ -21955,3 +21955,3 @@
+@@ -22558,3 +22558,3 @@
                  
--                done_testing( 1992 ) ;
-+                done_testing( 1884 ) ;
+-                done_testing( 2065 ) ;
++                done_testing( 1935 ) ;
                  note( 'Leaving  tests()' ) ;
+ 

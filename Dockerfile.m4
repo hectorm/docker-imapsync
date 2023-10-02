@@ -58,9 +58,9 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Build Imapsync
-ARG IMAPSYNC_VERSION=2.229
+ARG IMAPSYNC_VERSION=2.261
 ARG IMAPSYNC_TARBALL_URL=https://imapsync.lamiral.info/dist/imapsync-${IMAPSYNC_VERSION}.tgz
-ARG IMAPSYNC_TARBALL_CHECKSUM=553ce6d6535b954987a859fa0c3c74da446df74157d398ab09159c7f8ed8043d
+ARG IMAPSYNC_TARBALL_CHECKSUM=378716538a9e4425a8fde68e6d8d79bca4bb7fa2a4e87a27801d25fc2d5812cc
 RUN curl -Lo /tmp/imapsync.tgz "${IMAPSYNC_TARBALL_URL:?}"
 RUN printf '%s' "${IMAPSYNC_TARBALL_CHECKSUM:?}  /tmp/imapsync.tgz" | sha256sum -c
 RUN mkdir /tmp/imapsync/
@@ -75,7 +75,7 @@ RUN PATH="${PATH}:${PWD}" pp -x -o ./imapsync.cgi ./imapsync
 RUN ./imapsync.cgi --version
 WORKDIR /tmp/imapsync/X/
 RUN ln -sf ./imapsync_form_extra.html ./index.html
-RUN unlink ./imapsync_current.txt && touch ./imapsync_current.txt
+RUN rm -f ./imapsync_current.txt && touch ./imapsync_current.txt
 
 ##################################################
 ## "main" stage
