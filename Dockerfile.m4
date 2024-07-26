@@ -5,7 +5,7 @@ m4_changequote([[, ]])
 ## "build" stage
 ##################################################
 
-m4_ifdef([[CROSS_ARCH]], [[FROM docker.io/CROSS_ARCH/ubuntu:22.04]], [[FROM docker.io/ubuntu:22.04]]) AS build
+m4_ifdef([[CROSS_ARCH]], [[FROM docker.io/CROSS_ARCH/ubuntu:24.04]], [[FROM docker.io/ubuntu:24.04]]) AS build
 
 # Install system packages
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -80,7 +80,7 @@ RUN rm -f ./imapsync_current.txt && touch ./imapsync_current.txt
 ## "main" stage
 ##################################################
 
-m4_ifdef([[CROSS_ARCH]], [[FROM docker.io/CROSS_ARCH/ubuntu:22.04]], [[FROM docker.io/ubuntu:22.04]]) AS main
+m4_ifdef([[CROSS_ARCH]], [[FROM docker.io/CROSS_ARCH/ubuntu:24.04]], [[FROM docker.io/ubuntu:24.04]]) AS main
 
 # Install system packages
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -106,8 +106,7 @@ RUN find /etc/h2o/ -type d -not -perm 0755 -exec chmod 0755 '{}' ';'
 RUN find /etc/h2o/ -type f -not -perm 0644 -exec chmod 0644 '{}' ';'
 
 # Create unprivileged user
-ENV IMAPSYNC_USER_UID=1000
-RUN useradd -u "${IMAPSYNC_USER_UID:?}" -g 0 -s "$(command -v sh)" -Md / imapsync
+RUN userdel -rf "$(id -nu 1000)" && useradd -u 1000 -g 0 -s "$(command -v bash)" -m imapsync
 
 # Drop root privileges
 USER imapsync:root
