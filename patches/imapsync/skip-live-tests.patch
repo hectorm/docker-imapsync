@@ -40,6 +40,6 @@
                  tests_get_options_extra(  ) ;
 @@ -22615,3 +22615,3 @@
                  
--                done_testing( 2082 ) ;
-+                done_testing( 1935 ) ;
+-                done_testing( 2151 ) ;
++                done_testing( 2001 ) ;
                  note( 'Leaving  tests()' ) ;

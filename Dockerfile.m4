@@ -57,9 +57,9 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Build Imapsync
-ARG IMAPSYNC_VERSION=2.264
+ARG IMAPSYNC_VERSION=2.290
 ARG IMAPSYNC_TARBALL_URL=https://imapsync.lamiral.info/dist/imapsync-${IMAPSYNC_VERSION}.tgz
-ARG IMAPSYNC_TARBALL_CHECKSUM=14469e2de0d8deba6195a63e388bc38a6b7000ff12220912bf8f01a5673d6c7d
+ARG IMAPSYNC_TARBALL_CHECKSUM=b85853c676940cfefdde2b1fa45ffb4fc7780275c32f8b8deb353c8a063e1051
 RUN curl -Lo /tmp/imapsync.tgz "${IMAPSYNC_TARBALL_URL:?}"
 RUN printf '%s' "${IMAPSYNC_TARBALL_CHECKSUM:?}  /tmp/imapsync.tgz" | sha256sum -c
 RUN mkdir /tmp/imapsync/
